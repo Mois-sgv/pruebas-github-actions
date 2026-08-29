@@ -82,7 +82,7 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
     environment: Develop
     runs-on: ubuntu-latest 
     steps: 
-    - name: Variables # trabajando con variables a nivel de repositorio    
+    - name: Variables Enviroment # A pesar que a nivel de enviroment tiene el mismo nombre de variable toma el del enviroment   
       run:  echo "Hola, ${{ vars.NAME }}"  
     
     - name: Echo SECRETOS # trabajando con secretos a nivel de repositorio y enviandolo a un fichero .txt
@@ -96,7 +96,7 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
     environment: Production
     runs-on: ubuntu-latest 
     steps:    
-    - name: Variables # trabajando con variables a nivel de repositorio    
+    - name: Variables Enviroment # A pesar que a nivel de enviroment tiene el mismo nombre de variable toma el del enviroment    
       run:  echo "Hola, ${{ vars.NAME }}" 
       
     - name: Echo SECRETOS # trabajando con secretos a nivel de repositorio y enviandolo a un fichero .txt
