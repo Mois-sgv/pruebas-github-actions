@@ -22,7 +22,7 @@ on:
 jobs: # Estos Job se van a lanzar en diferentes servidores 
   job1: # Este nombre se le puede dar cualquiera build , demo, pepito, etc.
     runs-on: ubuntu-latest # Sistema operativo donde correra el software a subir (En este caso son maquinas Linux)
-    steps: # Lista de pasos secuenciales que ejecutará el servidor de Windows
+    steps: # Lista de pasos secuenciales que ejecutará el servidor de linux
     - name: checkout code  # Paso 1 Revisando Codigo,  Descarga una copia de todo el código de tu repositorio en el servidor virtual      
       uses: actions/checkout@v7 # Paso 2: checkout@v5 Clona y copia y te deja en el directorio, el uses busca un trozo de codigo que alguien ya ha echo e instala las herramientas de Visual Studio 
       # with:  con esto podemos seleccionar atributos directorio, si es privado el repo ssh...
@@ -36,23 +36,43 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
             echo "Buenas tardes "             
     - name: List directory # listar directorio en el servidor donde se han subido los ficheros       
       run:  ls -la       
-    - name: Variables # trabajando con variables a nivel de repositorio    
-      run:  echo "Hola, ${{ vars.NAME }}"    
-    - name: Variables  y concatenenado # trabajando con variables a nivel de repositorio  y concateneando   
-      run:  echo "Hola, Señor ${{ vars.NAME }} Buenas tardes" 
+   
            
 
   job2: # Este nombre se le puede dar cualquiera build , demo, pepito, etc.
     needs: job1 # [job1, job2, job3 ...] Esto indica que para que se ejecute el Job2 debe finalizar primero el job1
     runs-on: ubuntu-latest # Sistema operativo donde correra el software a subir (En este caso son maquinas Linux)
-    steps: # Lista de pasos secuenciales que ejecutará el servidor de Windows
+    steps: # Lista de pasos secuenciales que ejecutará el servidor de Linux
     - name: checkout code 
       uses: actions/checkout@v7  
 
     - name: Print Message # Imprimo en pantalla un mensaje,       
       run:  echo "Hola, job 2"
+
     - name: Echo file
       run: cat Estructura.txt
+
     - name: Echo file
       run: cat nota.txt
-           
+    
+    - name: Echo SECRETOS
+      run: echo "${{ secrets.SECRETO }}" > secreto.txt
+  
+  job3: 
+    needs: [job1, job2]
+    runs-on: ubuntu-latest 
+    steps: 
+    - name: checkout code 
+      uses: actions/checkout@v7  
+
+    - name: Echo SECRETOS # trabajando con secretos a nivel de repositorio y enviandolo a un fichero .txt
+      run: echo "${{ secrets.SECRETO }}" > secreto.txt
+
+    - name: Print SECRETO # Leyendo el fichero secreto.txt   
+      run:  cat secreto.txt      
+
+    - name: Variables # trabajando con variables a nivel de repositorio    
+      run:  echo "Hola, ${{ vars.NAME }}"    
+
+    - name: Variables  y concatenenado # trabajando con variables a nivel de repositorio  y concateneando   
+      run:  echo "Hola, Señor ${{ vars.NAME }} Buenas tardes" 
