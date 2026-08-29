@@ -59,7 +59,7 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
       run: echo "${{ secrets.SECRETO }}" > secreto.txt
   
   job3: 
-    needs: [job1, job2]
+    needs: job1
     runs-on: ubuntu-latest 
     steps: 
     - name: checkout code 
