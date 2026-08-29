@@ -7,6 +7,8 @@ on:
     branches: [ "main" ]  # Se ejecuta cada vez que subes cambios (git push) a la rama main, tambien se puede - main o - feature/*
     # - main --> Tambien se puede asi sin [ "main" ]
     # - feature/* --> Todas las ramas que hagan algo mas.
+    # patchs:
+        # - ".github/workflows/*" Esto indica que se lance el disparador cuando hayan cambios en esta ruta.
   pull_request:
     branches:
     - main # Se ejecuta cuando alguien propone cambios hacia la rama main
@@ -21,11 +23,11 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
       # with:  con esto podemos seleccionar atributos directorio, si es privado el repo ssh...
        #  repository: Mois-sgv/pruebas-github-actions
 
-    - name: El (-) indica que es un steps (paso) # Imprimo en pantalla un mensaje,       
+    - name: Print Message #El (-) indica que es un steps (paso) Imprimo en pantalla un mensaje,       
       run:  |  # Lo imprimo, Run es para ejecutar un comando, para varios comandos usamos el pi | y si es una sola lo eliminamos, la instalacion es Linux. 
             echo "Hola, mundo 1"
             echo "Hola, mundo 2"             
-    - name: Listar directorio # listar directorio en el servidor donde se han subido los ficheros       
+    - name: List directory # listar directorio en el servidor donde se han subido los ficheros       
       run:  ls -la         
            
 
@@ -36,6 +38,6 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
     - name: checkout code 
       uses: actions/checkout@v7  
 
-    - name: Estoy en el job 2 # Imprimo en pantalla un mensaje,       
+    - name: Print Message # Imprimo en pantalla un mensaje,       
       run:  echo "Hola, job 2"
            
