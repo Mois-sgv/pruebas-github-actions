@@ -14,7 +14,7 @@ on:
     paths:
         - "*.md" # No se dispare si hay cambios en en este fichero.  
 
-  workflow_dispatch: # Se utiliza para ejecuciones manuales, no necesita atributos
+  workflow_dispatch: # Se utiliza para ejecuciones manuales, debo estar ubicado en la rama correcta, no necesita atributos
 
 #########################################################################################################
 
@@ -32,10 +32,14 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
 
     - name: Print Message #El (-) indica que es un steps (paso) Imprimo en pantalla un mensaje,       
       run:  |  # Lo imprimo, Run es para ejecutar un comando, para varios comandos usamos el pi | y si es una sola lo eliminamos, la instalacion es Linux. 
-            echo "Hola, mundo 1"
-            echo "Hola, mundo 2"             
+            echo "Hola, !" 
+            echo "Buenas tardes "             
     - name: List directory # listar directorio en el servidor donde se han subido los ficheros       
-      run:  ls -la         
+      run:  ls -la       
+    - name: Variables # trabajando con variables a nivel de repositorio    
+      run:  echo "Hola, ${{ vars.NAME }}!"    
+    - name: Variables  y concatenenado # trabajando con variables a nivel de repositorio  y concateneando   
+      run:  echo "Hola, Señor-${{ vars.NAME }}-Buenas tardes!" 
            
 
   job2: # Este nombre se le puede dar cualquiera build , demo, pepito, etc.
