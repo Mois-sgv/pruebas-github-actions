@@ -7,15 +7,16 @@ on:
     branches: [ "main" ]  # Se ejecuta cada vez que subes cambios (git push) a la rama main, tambien se puede - main o - feature/*
     # - main --> Tambien se puede asi sin [ "main" ]
     # - feature/* --> Todas las ramas que hagan algo mas.
-  #pull_request:
-   # branches: [ "main" ]  # Se ejecuta cuando alguien propone cambios hacia la rama main
+  pull_request:
+    branches:
+    - main # Se ejecuta cuando alguien propone cambios hacia la rama main
 
 # Bloque que contiene los trabajos o tareas que va a realizar el servidor
 jobs: # Estos Job se van a lanzar en diferentes servidores 
-  Job1: # Este nombre se le puede dar cualquiera build , demo, pepito, etc.
+  job1: # Este nombre se le puede dar cualquiera build , demo, pepito, etc.
     runs-on: ubuntu-latest # Sistema operativo donde correra el software a subir (En este caso son maquinas Linux)
     steps: # Lista de pasos secuenciales que ejecutará el servidor de Windows
-    - name: checkout code # Paso 1 Revisando Codigo,  Descarga una copia de todo el código de tu repositorio en el servidor virtual      
+    - name: checkout code  # Paso 1 Revisando Codigo,  Descarga una copia de todo el código de tu repositorio en el servidor virtual      
       uses: actions/checkout@v7 # Paso 2: checkout@v5 Clona y copia y te deja en el directorio, el uses busca un trozo de codigo que alguien ya ha echo e instala las herramientas de Visual Studio 
       # with:  con esto podemos seleccionar atributos directorio, si es privado el repo ssh...
        #  repository: Mois-sgv/pruebas-github-actions
@@ -28,7 +29,8 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
       run:  ls -la         
            
 
-  Job2: # Este nombre se le puede dar cualquiera build , demo, pepito, etc.
+  job2: # Este nombre se le puede dar cualquiera build , demo, pepito, etc.
+    needs: job1 # [job1, job2, job3 ...] Esto indica que para que se ejecute el Job2 debe finalizar primero el job1
     runs-on: ubuntu-latest # Sistema operativo donde correra el software a subir (En este caso son maquinas Linux)
     steps: # Lista de pasos secuenciales que ejecutará el servidor de Windows
     - name: checkout code 
