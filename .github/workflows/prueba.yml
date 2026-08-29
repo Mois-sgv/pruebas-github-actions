@@ -1,7 +1,7 @@
 # Nombre que se mostrará en la pestaña "Actions" de tu repositorio de GitHub
 name: CI
 
-# Define los "disparadores" (triggers) que activan este flujo automáticamente
+# Define los "DISPARADORES" (triggers) que activan este flujo automáticamente
 on:
   push:
     branches: [ "main" ]  # Se ejecuta cada vez que subes cambios (git push) a la rama main, tambien se puede - main o - feature/*
@@ -9,9 +9,14 @@ on:
     # - feature/* --> Todas las ramas que hagan algo mas.
     # patchs:
         # - ".github/workflows/*" Esto indica que se lance el disparador cuando hayan cambios en esta ruta.
+  
   pull_request:
     branches:
-    - main # Se ejecuta cuando alguien propone cambios hacia la rama main
+    - main # Se ejecuta cuando alguien propone cambios hacia la rama main    
+
+  workflow_dispatch: # Se utiliza para ejeccuciones manuales, no necesita atributos
+
+#########################################################################################################
 
 # Bloque que contiene los trabajos o tareas que va a realizar el servidor
 jobs: # Estos Job se van a lanzar en diferentes servidores 
