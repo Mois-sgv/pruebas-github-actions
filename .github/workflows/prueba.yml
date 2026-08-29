@@ -7,12 +7,12 @@ on:
     branches: [ "main" ]  # Se ejecuta cada vez que subes cambios (git push) a la rama main, tambien se puede - main o - feature/*
     # - main --> Tambien se puede asi sin [ "main" ]
     # - feature/* --> Todas las ramas que hagan algo mas.
-    paths:
-        - ".md" # No se dispare si hay cambios en en este fichero.
-  
+      
   pull_request:
     branches:
-    - main # Se ejecuta cuando alguien propone cambios hacia la rama main    
+    - main # Se ejecuta cuando alguien propone cambios hacia la rama main  
+    paths:
+        - "*.md" # No se dispare si hay cambios en en este fichero.  
 
   workflow_dispatch: # Se utiliza para ejecuciones manuales, no necesita atributos
 
