@@ -13,7 +13,7 @@ on:
 # Bloque que contiene los trabajos o tareas que va a realizar el servidor
 jobs: # Estos Job se van a lanzar en diferentes servidores 
   Job1: # Este nombre se le puede dar cualquiera build , demo, pepito, etc.
-    runs-on: ubuntu-lastest # Sistema operativo donde correra el software a subir (En este caso son maquinas Linux)
+    runs-on: ubuntu-latest # Sistema operativo donde correra el software a subir (En este caso son maquinas Linux)
     steps: # Lista de pasos secuenciales que ejecutará el servidor de Windows
     - name: checkout code # Paso 1 Revisando Codigo,  Descarga una copia de todo el código de tu repositorio en el servidor virtual      
       uses: actions/checkout@v7 # Paso 2: checkout@v5 Clona y copia y te deja en el directorio, el uses busca un trozo de codigo que alguien ya ha echo e instala las herramientas de Visual Studio 
@@ -29,7 +29,7 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
            
 
   Job2: # Este nombre se le puede dar cualquiera build , demo, pepito, etc.
-    runs-on: ubuntu-lastest # Sistema operativo donde correra el software a subir (En este caso son maquinas Linux)
+    runs-on: ubuntu-latest # Sistema operativo donde correra el software a subir (En este caso son maquinas Linux)
     steps: # Lista de pasos secuenciales que ejecutará el servidor de Windows
     - name: checkout code 
       uses: actions/checkout@v7  
