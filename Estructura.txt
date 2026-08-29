@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ] 
+          
+  pull_request:
+    branches:
+    - main   
+
+  workflow_dispatch: 
+
+#########################################################################################################
+
+jobs:  
+  job1: 
+    runs-on: ubuntu-latest 
+    steps: 
+    - name: checkout code  
+      uses: actions/checkout@v7 
+     
+    - name: Echo file
+      run: cat hola.txt
+
+    - name: Print Message       
+      run:  |  
+            echo "Hola, mundo, job1"
+            echo "Hola, mundo job1"             
+    - name: List directory 
+      run:  ls -la         
+           
+
+  job2: 
+    needs: job1 
+    runs-on: ubuntu-latest 
+    steps: 
+    - name: checkout code 
+      uses: actions/checkout@v7  
+
+    - name: Print Message     
+      run:  echo "Hola, job 2"
+           
