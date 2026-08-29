@@ -7,8 +7,8 @@ on:
     branches: [ "main" ]  # Se ejecuta cada vez que subes cambios (git push) a la rama main, tambien se puede - main o - feature/*
     # - main --> Tambien se puede asi sin [ "main" ]
     # - feature/* --> Todas las ramas que hagan algo mas.
-    # patchs:
-        # - ".github/workflows/*" Esto indica que se lance el disparador cuando hayan cambios en esta ruta.
+    paths:
+        - ".md" # No se dispare si hay cambios en en este fichero.
   
   pull_request:
     branches:
