@@ -14,7 +14,7 @@ on:
     branches:
     - main # Se ejecuta cuando alguien propone cambios hacia la rama main    
 
-  workflow_dispatch: # Se utiliza para ejeccuciones manuales, no necesita atributos
+  workflow_dispatch: # Se utiliza para ejecuciones manuales, no necesita atributos
 
 #########################################################################################################
 
@@ -47,4 +47,6 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
 
     - name: Print Message # Imprimo en pantalla un mensaje,       
       run:  echo "Hola, job 2"
+    - name: Echo file
+      run: cat Estructura.txt
            
