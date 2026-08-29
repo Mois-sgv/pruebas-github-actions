@@ -37,9 +37,9 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
     - name: List directory # listar directorio en el servidor donde se han subido los ficheros       
       run:  ls -la       
     - name: Variables # trabajando con variables a nivel de repositorio    
-      run:  echo "Hola, ${{ vars.NAME }}!"    
+      run:  echo "Hola, ${{ vars.NAME }}"    
     - name: Variables  y concatenenado # trabajando con variables a nivel de repositorio  y concateneando   
-      run:  echo "Hola, Señor-${{ vars.NAME }}-Buenas tardes!" 
+      run:  echo "Hola, Señor ${{ vars.NAME }} Buenas tardes" 
            
 
   job2: # Este nombre se le puede dar cualquiera build , demo, pepito, etc.
