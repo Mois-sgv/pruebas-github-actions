@@ -76,3 +76,32 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
 
     - name: Variables  y concatenenado # trabajando con variables a nivel de repositorio  y concateneando   
       run:  echo "Hola, Señor ${{ vars.NAME }} Buenas tardes" 
+    
+  job4: 
+    needs: job1
+    environment: Develop
+    runs-on: ubuntu-latest 
+    steps: 
+    - name: Variables # trabajando con variables a nivel de repositorio    
+      run:  echo "Hola, ${{ vars.NAME }}"  
+    
+    - name: Echo SECRETOS # trabajando con secretos a nivel de repositorio y enviandolo a un fichero .txt
+      run: echo "${{ secrets.SECRETO }}" > secreto.txt
+
+    - name: Print SECRETO # Leyendo el fichero secreto.txt   
+      run:  cat secreto.txt      
+
+  job5: 
+    needs: job1
+    environment: Production
+    runs-on: ubuntu-latest 
+    steps:    
+    - name: Variables # trabajando con variables a nivel de repositorio    
+      run:  echo "Hola, ${{ vars.NAME }}" 
+      
+    - name: Echo SECRETOS # trabajando con secretos a nivel de repositorio y enviandolo a un fichero .txt
+      run: echo "${{ secrets.SECRETO }}" > secreto.txt
+
+    - name: Print SECRETO # Leyendo el fichero secreto.txt   
+      run:  cat secreto.txt      
+   
