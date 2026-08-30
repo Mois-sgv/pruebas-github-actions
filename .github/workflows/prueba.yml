@@ -1,21 +1,21 @@
 # Nombre que se mostrará en la pestaña "Actions" de tu repositorio de GitHub
 name: CI
-run-name: Deploy in live by ${{github.actor}}
+run-name: Deploy in live by ${{github.actor}} # el github.actor indica quien esta lanzado este job.
 
 # Define los "DISPARADORES" (triggers) que activan este flujo automáticamente
 on:
   push:
-    branches: [ "main" ]  # Se ejecuta cada vez que subes cambios (git push) a la rama main, tambien se puede - main o - feature/*
+    branches: [ "main", "develop"]  # Se ejecuta cada vez que subes cambios (git push) a la rama main, tambien se puede - main o - feature/*
     # - main --> Tambien se puede asi sin [ "main" ]
     # - feature/* --> Todas las ramas que hagan algo mas.
       
-  pull_request:
-    branches:
-    - main # Se ejecuta cuando alguien propone cambios hacia la rama main  
-    paths:
-        - "*.md" # No se dispare si hay cambios en en este fichero.  
+  # pull_request:
+    #branches:
+    #- main # Se ejecuta cuando alguien propone cambios hacia la rama main  
+   # paths:
+       # - "*.md" # No se dispare si hay cambios en en este fichero.  
 
-  workflow_dispatch: # Se utiliza para ejecuciones manuales, debo estar ubicado en la rama correcta, no necesita atributos
+  #workflow_dispatch: # Se utiliza para ejecuciones manuales, debo estar ubicado en la rama correcta, no necesita atributos
 
 #########################################################################################################
 
