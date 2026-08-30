@@ -17,6 +17,13 @@ on:
        # - "*.md" # No se dispare si hay cambios en en este fichero.  
 
   #workflow_dispatch: # Se utiliza para ejecuciones manuales, debo estar ubicado en la rama correcta, no necesita atributos
+  workflow_dispatch:
+    inputs:
+      confirmar_despliegue:
+        description: '⚠️ Marcar para confirmar que entiendes los riesgos de este despliegue'
+        required: true
+        type: boolean
+        default: false
 env:
     FULL_NAME: ${{github.actor}} ${{github.repository}} # Variables de ambiente que existen durante la ejecucion
     VALOR: default
@@ -137,5 +144,20 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
             echo "APELLIDO su valor ${{ env.APELLIDO }}" 
             echo "NOMBRE su valor ${{ env.NOMBRE }}"
             echo "EQUIPO su valor ${{ env.EQUIPO }}"       
-   
+  
+  #job8: # autenticacion en AWS
+   # needs: job1
+    #environment: ${{ github.ref_name == 'main' && 'PRODUCTION' || (github.ref_name == 'develop' && 'PREPRODUCCION' || 'test') }}
+    #runs-on: ubuntu-latest          
+    #steps:    
+    #- name: Conect AWS      
+    #  uses: aws-actions/configure-aws-credentials@v4
+    #  with:
+     #   aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+     #   aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #  aws-region: us-east-1
+
+
+
+            
    
