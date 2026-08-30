@@ -17,7 +17,9 @@ on:
        # - "*.md" # No se dispare si hay cambios en en este fichero.  
 
   #workflow_dispatch: # Se utiliza para ejecuciones manuales, debo estar ubicado en la rama correcta, no necesita atributos
-
+env:
+    FULL_NAME: ${{github.actor}} ${{github.repository}} # Variables de ambiente que existen durante la ejecucion
+    VALOR: default
 #########################################################################################################
 
 # Bloque que contiene los trabajos o tareas que va a realizar el servidor
@@ -118,6 +120,23 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
       run: echo "${{ secrets.SECRETO }}" > secreto.txt
 
     - name: Print SECRETO # Leyendo el fichero secreto.txt   
-      run:  cat secreto.txt     
-  
+      run:  cat secreto.txt  
+
+  job7: 
+    needs: job1
+    runs-on: ubuntu-latest 
+    env:
+        APELLIDO: ${{github.actor}}        
+    steps:    
+    - name: Variable de Ambiente 1  #  # Se puede definir en varios niveles ON, job, steps, se indica en env y la podemos utiliza en cualquier parte del codigo.
+      env:
+        NOMBRE: ${{github.actor}} ${{github.repository}} 
+        VALOR: SOY_VALOR
+      run:  |
+            echo "FULL_NAME su valor --> ${{ env.FULL_NAME }}"
+            echo "APELLIDO su valor ${{ vars.NAME }}" 
+            echo "NOMRE su valor ${{ vars.NOMBRE}}"
+      
+    - name: Variable de Ambiente 2 # Variable definida en env y la podemos utiliza en cualquier parte del codigo.    
+      run:  echo "VALOR su valor --> ${{ env.VALOR }}" 
    
