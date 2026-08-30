@@ -134,8 +134,8 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
         VALOR: SOY_VALOR
       run:  |
             echo "FULL_NAME su valor --> ${{ env.FULL_NAME }}"
-            echo "APELLIDO su valor ${{ vars.NAME }}" 
-            echo "NOMRE su valor ${{ vars.NOMBRE}}"
+            echo "APELLIDO su valor ${{ vars.APELLIDO }}" 
+            echo "NOMBRE BARCELONA ${{ vars.NOMBRE}}"
       
     - name: Variable de Ambiente 2 # Variable definida en env y la podemos utiliza en cualquier parte del codigo.    
       run:  echo "VALOR su valor --> ${{ env.VALOR }}" 
