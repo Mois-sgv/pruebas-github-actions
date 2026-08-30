@@ -41,7 +41,7 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
     steps:
     - name: checkout code  
       uses: actions/checkout@v4
-      
+
   job1: # Este nombre se le puede dar cualquiera build , demo, pepito, etc.
     runs-on: ubuntu-latest # Sistema operativo donde correra el software a subir (En este caso son maquinas Linux)
     steps: # Lista de pasos secuenciales que ejecutará el servidor de linux
@@ -67,7 +67,7 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
            
 
   job2: # Este nombre se le puede dar cualquiera build , demo, pepito, etc.
-    needs: job1 # [job1, job2, job3 ...] Esto indica que para que se ejecute el Job2 debe finalizar primero el job1
+    needs: job0 # [job1, job2, job3 ...] Esto indica que para que se ejecute el Job2 debe finalizar primero el job1
     runs-on: ubuntu-latest # Sistema operativo donde correra el software a subir (En este caso son maquinas Linux)
     steps: # Lista de pasos secuenciales que ejecutará el servidor de Linux
     - name: checkout code 
@@ -86,7 +86,7 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
       run: echo "${{ secrets.SECRETO }}" > secreto.txt
   
   job3: 
-    needs: job1
+    needs: job0
     runs-on: ubuntu-latest 
     steps: 
     - name: checkout code 
@@ -105,7 +105,7 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
       run:  echo "Hola, Señor ${{ vars.NAME }} Buenas tardes" 
     
   job4: 
-    needs: job1
+    needs: job0
     environment: Develop
     runs-on: ubuntu-latest 
     steps: 
@@ -119,7 +119,7 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
       run:  cat secreto.txt      
 
   job5: 
-    needs: job1
+    needs: job0
     environment: Production
     runs-on: ubuntu-latest 
     steps:    
@@ -132,7 +132,7 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
     - name: Print SECRETO # Leyendo el fichero secreto.txt   
       run:  cat secreto.txt    
   job6: 
-    needs: job1
+    needs: job0
     environment: ${{ github.ref_name == 'main' && 'Production' || 'Develop' }} # Esto es un IF, remplaza el job 4 y 5 en un solo codigo
     runs-on: ubuntu-latest 
     steps:    
@@ -146,7 +146,7 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
       run:  cat secreto.txt  
 
   job7: 
-    needs: job1
+    needs: job0
     runs-on: ubuntu-latest 
     env:
         APELLIDO: ${{github.actor}}        
@@ -162,7 +162,7 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
             echo "EQUIPO su valor ${{ env.EQUIPO }}"       
   
   #job8: # autenticacion en AWS
-   # needs: job1
+   # needs: job0
     #environment: ${{ github.ref_name == 'main' && 'PRODUCTION' || (github.ref_name == 'develop' && 'PREPRODUCCION' || 'test') }}
     #runs-on: ubuntu-latest          
     #steps:    
