@@ -1,5 +1,6 @@
 # Nombre que se mostrará en la pestaña "Actions" de tu repositorio de GitHub
 name: CI
+run-name: Deploy in live by ${{github.actor}}
 
 # Define los "DISPARADORES" (triggers) que activan este flujo automáticamente
 on:
@@ -103,5 +104,19 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
       run: echo "${{ secrets.SECRETO }}" > secreto.txt
 
     - name: Print SECRETO # Leyendo el fichero secreto.txt   
-      run:  cat secreto.txt      
+      run:  cat secreto.txt    
+  job6: 
+    needs: job1
+    environment: ${{ github.ref_name == 'main' && 'Production' || 'Develop' }} # Esto es un IF, remplaza el job 4 y 5 en un solo codigo
+    runs-on: ubuntu-latest 
+    steps:    
+    - name: Variables Enviroment # A pesar que a nivel de enviroment tiene el mismo nombre de variable toma el del enviroment    
+      run:  echo "Hola, ${{ vars.NAME }}" 
+      
+    - name: Echo SECRETOS # trabajando con secretos a nivel de repositorio y enviandolo a un fichero .txt
+      run: echo "${{ secrets.SECRETO }}" > secreto.txt
+
+    - name: Print SECRETO # Leyendo el fichero secreto.txt   
+      run:  cat secreto.txt     
+  
    
