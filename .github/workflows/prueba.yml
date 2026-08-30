@@ -130,12 +130,12 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
     steps:    
     - name: Variable de Ambiente 1  #  # Se puede definir en varios niveles ON, job, steps, se indica en env y la podemos utiliza en cualquier parte del codigo.
       env:
-        NOMBRE: ${{github.actor}} ${{github.repository}} 
-        VALOR: SOY_VALOR
+        NOMBRE: BARCELONA ${{github.repository}} 
+        VALOR: CAMPEON 2027
       run:  |
             echo "FULL_NAME su valor --> ${{ env.FULL_NAME }}"
             echo "APELLIDO su valor ${{ vars.APELLIDO }}" 
-            echo "NOMBRE BARCELONA ${{ vars.NOMBRE}}"
+            echo "NOMBRE su valor ${{ vars.NOMBRE}}"
       
     - name: Variable de Ambiente 2 # Variable definida en env y la podemos utiliza en cualquier parte del codigo.    
       run:  echo "VALOR su valor --> ${{ env.VALOR }}" 
