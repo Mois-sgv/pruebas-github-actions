@@ -43,6 +43,7 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
       uses: actions/checkout@v4
 
   job1: # Este nombre se le puede dar cualquiera build , demo, pepito, etc.
+    needs: job0
     runs-on: ubuntu-latest # Sistema operativo donde correra el software a subir (En este caso son maquinas Linux)
     steps: # Lista de pasos secuenciales que ejecutará el servidor de linux
     - name: checkout code  # Paso 1 Revisando Codigo,  Descarga una copia de todo el código de tu repositorio en el servidor virtual      
