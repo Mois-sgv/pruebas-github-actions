@@ -46,7 +46,12 @@ jobs: # Estos Job se van a lanzar en diferentes servidores
             echo "Hola, !" 
             echo "Buenas tardes "             
     - name: List directory # listar directorio en el servidor donde se han subido los ficheros       
-      run:  ls -la       
+      run:  ls -la 
+    
+    - name: Mostrar el valor del input pasivo
+      run: |
+        echo "El usuario seleccionó la casilla de confirmación?"
+        echo "Valor del input: ${{ inputs.confirmar_despliegue }}"      
    
            
 
